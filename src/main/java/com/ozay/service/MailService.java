@@ -99,8 +99,7 @@ public class MailService {
 
         context.setVariable("body", body);
         context.setVariable("baseUrl", baseUrl);
-        AdvertisementRepository advertisementRepository = new AdvertisementRepository();
-        this.addAdvertisement(context);
+        this.addAdvertisement(context, notification.getBuildingId());
         String content = templateEngine.process("notification", context);
 
         sendGrid.setFrom("noreply@ozay.us");
@@ -202,13 +201,13 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 
-    private void addAdvertisement(Context context)
+    private void addAdvertisement(Context context, int buildingId)
     {
         AdvertisementRepository advertisementRepository = new AdvertisementRepository();
-        Advertisement advertisement = advertisementRepository.getAdvertisement(1);
+        Advertisement advertisement = advertisementRepository.getAdvertisementByBuilding(buildingId);
         context.setVariable("imageLink", advertisement.getImageLink());
         context.setVariable("pageLink", advertisement.getPageLink());
-        context.setVariable("address", advertisement.getAddress());
-        context.setVariable("string", advertisement.getString());
+        context.setVariable("targetLocation", advertisement.getTargetLocation());
+        context.setVariable("caption", advertisement.getCaption());
     }
 }

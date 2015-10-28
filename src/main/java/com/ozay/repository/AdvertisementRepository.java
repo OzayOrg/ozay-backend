@@ -2,8 +2,6 @@ package com.ozay.repository;
 
 import com.ozay.model.Advertisement;
 import com.ozay.rowmapper.AdvertisementRowMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,36 +17,35 @@ import java.util.List;
 @Repository
 public class AdvertisementRepository {
 
-    private final Logger log = LoggerFactory.getLogger(AdvertisementRepository.class);
-
     @Inject
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public Advertisement getAdvertisement(long srNo)
+    static int count;
+    public Advertisement getAdvertisementByBuilding(int buildingId)
     {
-        String query = "select * from advertisement WHERE srNo = :srNo";
+        String query = "SELECT * FROM advertisement WHERE buildingId = :buildingId";
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("srNo", srNo);
-        //log.debug("Null??");
+        params.addValue("buildingId", buildingId);
         List<Advertisement> list =  namedParameterJdbcTemplate.query(query, params, new AdvertisementRowMapper(){});
-
-
-        if(list.size() == 1){
-            return (Advertisement) list.get(0);
+        if(!list.isEmpty())
+        {
+            count++;
+            return list.get(count % list.size());
         }
-        else {
-            return null;
-        }
+
+        return null;
     }
 
     public int create(Advertisement advertisement)
     {
-        String insert = "insert into advertisement values (:address, :string, :imageLink, :pageLink, :srNo)";
+        String insert = "insert into advertisement values (:targetLocation, :caption, :imageLink, :pageLink, :srNo, :buildingName)";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("address", advertisement.getAddress());
-        mapSqlParameterSource.addValue("string", advertisement.getString());
+        mapSqlParameterSource.addValue("targetLocation", advertisement.getTargetLocation());
+        mapSqlParameterSource.addValue("caption", advertisement.getCaption());
+        mapSqlParameterSource.addValue("pageLink", advertisement.getPageLink());
         mapSqlParameterSource.addValue("imageLink", advertisement.getImageLink());
         mapSqlParameterSource.addValue("srNo", advertisement.getSrNo());
+        mapSqlParameterSource.addValue("buildingId", advertisement.getBuildingId());
 
         int id = namedParameterJdbcTemplate.queryForObject(insert, mapSqlParameterSource, Integer.class );
         return id;

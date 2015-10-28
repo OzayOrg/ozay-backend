@@ -14,10 +14,12 @@ public class AdvertisementRowMapper implements RowMapper {
     @Override
     public Advertisement mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Advertisement advertisement = new Advertisement();
-        advertisement.setAddress(resultSet.getString("address"));
+        advertisement.setTargetLocation(resultSet.getString("targetLocation"));
         advertisement.setImageLink(resultSet.getString("imageLink"));
+        advertisement.setCaption(resultSet.getString("caption"));
         advertisement.setPageLink(resultSet.getString("pageLink"));
         advertisement.setSrNo(resultSet.getInt("srNo"));
+        advertisement.setBuildingId(resultSet.getString("buildingId"));
         return advertisement;
     }
 }

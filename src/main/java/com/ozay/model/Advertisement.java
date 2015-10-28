@@ -4,18 +4,19 @@ package com.ozay.model;
  * Created by Adi Subramanian on 10/15/2015.
  */
 public class Advertisement {
-    private String address;
+    private String targetLocation;
     private String imageLink;
     private String pageLink;
-    private String string;
+    private String caption;
+    private String buildingId;
     private int srNo;
 
-    public String getAddress() {
-        return address;
+    public String getTargetLocation() {
+        return targetLocation;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTargetLocation(String targetLocation) {
+        this.targetLocation = targetLocation;
     }
 
     public String getImageLink() {
@@ -34,9 +35,13 @@ public class Advertisement {
         this.pageLink = pageLink;
     }
 
-    public String getString() { return string; }
+    public String getCaption() { return caption; }
 
-    public void setString(String string) { this.string = string; }
+    public void setCaption(String caption) { this.caption = caption; }
+
+    public String getBuildingId() { return buildingId; }
+
+    public void setBuildingId(String buildingId) { this.buildingId = buildingId; }
 
     public int getSrNo() {
         return srNo;
@@ -49,9 +54,11 @@ public class Advertisement {
 
     public String toString() {
         return "Advertisement{" +
-            "address='" + address + '\'' +
+            "targetLocation='" + targetLocation + '\'' +
             "imageLink='" + imageLink + '\'' +
             "pageLink='" + pageLink + '\'' +
+            "caption='" + caption + '\''+
+            "buildingId='" + buildingId + '\''+
             "srNo='" + srNo + '\'' +
             "}";
     }
