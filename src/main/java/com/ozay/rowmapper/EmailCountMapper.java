@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by naofumiezaki on 4/29/15.
+ * Created by sarvesh on 31-10-2015.
  */
-public class NotificationMapper implements RowMapper {
 
+public class EmailCountMapper extends NotificationMapper {
     public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
         Notification notification = new Notification();
         notification.setId(rs.getLong("id"));
@@ -22,6 +22,7 @@ public class NotificationMapper implements RowMapper {
         notification.setCreatedDate(new DateTime(rs.getDate("created_date")));
         notification.setSubject(rs.getString("subject"));
 
+        notification.setEmailCount(rs.getInt("emailCount"));
 
         return notification;
     }

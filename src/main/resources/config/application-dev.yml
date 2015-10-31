@@ -5,12 +5,12 @@ spring:
     profiles: dev
 
     datasource:
-        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url:  jdbc:postgresql://ec2-54-163-238-169.compute-1.amazonaws.com:5432/d4iftvgc664fcs?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-        databaseName: d4iftvgc664fcs
-        serverName: ec2-54-163-238-169.compute-1.amazonaws.com
-        username: ylvjtaavzjmhzk
-        password: TI_TwlUM5lxMg49kz2p1EKA-pY
+                dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+                url:  jdbc:postgresql://ec2-54-83-10-210.compute-1.amazonaws.com/d7iegu76smkaqb?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+                databaseName: d7iegu76smkaqb
+                serverName: ec2-54-83-10-210.compute-1.amazonaws.com
+                username: pymqxayzqcupig
+                password: bbfQfAnPae6Fk4jrJDChq4qOpN
 
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect

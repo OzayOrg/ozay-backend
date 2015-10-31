@@ -1,6 +1,7 @@
 package com.ozay.repository;
 
 import com.ozay.model.Notification;
+import com.ozay.rowmapper.EmailCountMapper;
 import com.ozay.rowmapper.NotificationMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,7 +30,7 @@ public class NotificationRepository{
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("buildingId", buildingId);
-        return namedParameterJdbcTemplate.query(query, params, new NotificationMapper());
+        return namedParameterJdbcTemplate.query(query, params, new EmailCountMapper());
     };
 
     public Notification findOne(Long id){
