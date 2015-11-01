@@ -41,7 +41,7 @@ public class Notification{
         return buildingId;
     }
 
-    public Integer getEmailCount(int emailCount) { return emailCount; }
+    public int getEmailCount(int emailCount) { return emailCount; }
 
     public void setEmailCount(int emailCount) { this.emailCount = emailCount; }
 

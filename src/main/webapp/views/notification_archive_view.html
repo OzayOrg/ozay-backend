@@ -16,7 +16,7 @@
                             <hr>
                             <div ng-bind-html="trustAsHtml(notification.notice)"></div>
                             <hr>
-                            <p><strong>{{emailCount}} Recipients</strong></p>
+                            <p><strong>{{notification.emailCount}} Recipients</strong></p>
                             <hr>
                             <div ng-repeat="record in notification.notificationRecordList">
                                 <span>{{record.email}}</span>

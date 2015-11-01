@@ -21,7 +21,6 @@ public class NotificationMapper implements RowMapper {
         notification.setCreatedBy(rs.getString("created_by"));
         notification.setCreatedDate(new DateTime(rs.getDate("created_date")));
         notification.setSubject(rs.getString("subject"));
-        notification.setEmailCount(rs.getInt("emailCount"));//to get the email count to be displayed as a part of notifications attribute
 
         return notification;
     }
