@@ -590,4 +590,11 @@ display: flex; /* add */
 .font-bold {
     font-weight: bold;
 }
+#fullscreenbtn {
+    text-align: center;
+    border    : 5px solid black;
+    padding   : 2px;
+    background: white;
+    float: right;
+}
 

@@ -1,9 +1,10 @@
-<div class="row">
+<div class="row" ng-controller="MainCtrl">
     <div class="col-sm-6">
         <div>
             Building Information Active Units/Total Units<br>
             {{dashboard.activeUnits}}/{{dashboard.totalUnits}}
         </div>
     </div>
+    <button id="fullscreenbtn" ng-click="goFullscreen()">Full Screen</button>
 
 </div>

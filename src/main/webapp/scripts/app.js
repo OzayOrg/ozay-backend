@@ -4,7 +4,7 @@
 var httpHeaders;
 
 var ozayApp = angular.module('ozayApp', ['http-auth-interceptor', 'tmh.dynamicLocale', 'ngSanitize',
-                                         'ngResource', 'ngRoute', 'ngCookies', 'ozayAppUtils', 'pascalprecht.translate', 'truncate', 'ui.router', 'angularjs-dropdown-multiselect', 'naturalSort','textAngular', 'ui.bootstrap']);
+                                         'ngResource', 'ngRoute', 'ngCookies', 'ozayAppUtils', 'pascalprecht.translate', 'truncate', 'ui.router', 'angularjs-dropdown-multiselect', 'naturalSort','textAngular', 'ui.bootstrap', 'FBAngular']);
 
 ozayApp
 .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
@@ -437,3 +437,14 @@ ozayApp
 		});
 	}
 });
+ozayApp.controller('MainCtrl', function($scope, Fullscreen) {
+	$scope.goFullscreen = function () {
+
+      // Fullscreen
+      if (Fullscreen.isEnabled())
+         Fullscreen.cancel();
+      else
+         Fullscreen.all();
+   };
+});
+
