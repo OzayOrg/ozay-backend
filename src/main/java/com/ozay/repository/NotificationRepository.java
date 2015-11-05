@@ -1,6 +1,7 @@
 package com.ozay.repository;
 
 import com.ozay.model.Notification;
+import com.ozay.rowmapper.EmailCountMapper;
 import com.ozay.rowmapper.NotificationMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,7 +26,11 @@ public class NotificationRepository{
         String query = "select S.*, D.emailCount from notification S, (select notification_id, count(*) as email_count from notification_record group by notification_id) D where S.id = D.notification_id";// this code was changed.
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("buildingId", buildingId);
-        return namedParameterJdbcTemplate.query(query, params, new NotificationMapper());
+
+       // return namedParameterJdbcTemplate.query(query, params, new NotificationMapper());
+
+        return namedParameterJdbcTemplate.query(query, params, new EmailCountMapper());
+
     };
 
     public Notification findOne(Long id){
