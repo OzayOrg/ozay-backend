@@ -221,7 +221,8 @@ select#building_list {
     float:right;
 }
 #content{
-    padding:15px;
+    padding-right:15px;
+    padding-left: 15px;
 }
 
 .navbar-static-top{
@@ -590,11 +591,17 @@ display: flex; /* add */
 .font-bold {
     font-weight: bold;
 }
-#fullscreenbtn {
-    text-align: center;
-    border    : 5px solid black;
-    padding   : 2px;
-    background: white;
+/*#fullscreenbtn {
+    //text-align: center;
+    //border    : 5px solid black;
+    //padding   : 2px;
+    //background: white;
+    float: right;
+    width: 30px;
+    height: 30px;
+}*/
+#fullscreen_icon {
+    width: 30px;
+    height: 30px;
     float: right;
 }
-
