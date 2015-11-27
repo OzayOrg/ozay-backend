@@ -11,6 +11,7 @@ ozayApp.constant('USER_ROLES', {
         'access_directory_delete': 'DIRECTORY_DELETE',
         'access_notification_archive': 'NOTIFICATION_ARCHIVE',
         'access_notification_create': 'NOTIFICATION_CREATE',
+        'access_notification_track': 'NOTIFICATION_TRACK',
         'access_management': 'ROLE_MANAGEMENT',
         'subscriber': 'ROLE_SUBSCRIBER',
     });

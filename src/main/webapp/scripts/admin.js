@@ -23,6 +23,10 @@ ozayApp
                     templateUrl: 'views/notification_create.html',
 
                 })
+                .when('/notification_track', {
+                    templateUrl: 'views/notification_track.html',
+
+                })
                 .when('/notification_archive', {
                     templateUrl: 'views/notification_archive.html',
 

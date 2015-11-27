@@ -71,7 +71,7 @@ public class MailService {
     }
 
     public int sendGrid(Notification notification, List<NotificationRecord> notificationRecords, String baseUrl){
-        SendGrid sendgrid = new SendGrid("OzayOrg", "Ozaysyzn1124");
+        SendGrid sendgrid = new SendGrid("OzayOrg", "SendGridDummy");
 
         int sentCount = 0;
 

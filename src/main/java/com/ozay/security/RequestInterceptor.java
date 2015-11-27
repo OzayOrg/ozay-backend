@@ -29,6 +29,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
 
 
     private static String NOTIFICATION_ARCHIVE = "NOTIFICATION_ARCHIVE";
+    private static String NOTIFICATION_TRACK = "NOTIFICATION_TRACK";
     private static String NOTIFICATION_CREATE = "NOTIFICATION_CREATE";
     private static String DIRECTORY_LIST = "DIRECTORY_LIST";
     private static String DIRECTORY_EDIT = "DIRECTORY_EDIT";
@@ -148,7 +149,11 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
         if(request.getServletPath().contains("api/notifications")){ // Notification
             if(request.getMethod().toUpperCase().equals("GET")== true){
                 return this.checkAccess(accountInformation, RequestInterceptor.NOTIFICATION_ARCHIVE);
-            } else {
+            }
+            if(request.getMethod().toUpperCase().equals("GET")== true){
+                return this.checkAccess(accountInformation, RequestInterceptor.NOTIFICATION_TRACK);
+            }
+            else {
                 return this.checkAccess(accountInformation, RequestInterceptor.NOTIFICATION_CREATE);
             }
         } else if(request.getServletPath().contains("api/members")){ // Directory

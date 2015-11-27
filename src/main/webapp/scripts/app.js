@@ -123,6 +123,17 @@ ozayApp
 			authorizedRoles: [USER_ROLES.admin, USER_ROLES.access_notification_archive, USER_ROLES.subscriber]
 		}
 	})
+
+	.state('home.notification_track', {
+		url: "/notification_track",
+		templateUrl: "/views/notification_track.html",
+		controller: 'NotificationTrackController',
+        access: {
+        	authorizedRoles: [USER_ROLES.admin, USER_ROLES.access_notification_archive, USER_ROLES.subscriber]
+        }
+	})
+
+
 	.state('home.notification_archive_view', {
 		url: "/notification_archive/view/:notificationId",
 		templateUrl: "/views/notification_archive_view.html",

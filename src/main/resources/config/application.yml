@@ -18,7 +18,7 @@ spring:
         host: smtp.sendgrid.net
         port: 25
         user: OzayOrg
-        password: Ozaysyzn1124
+        password: SendGridDummy
         protocol: smtp
         tls: false
         auth: false
