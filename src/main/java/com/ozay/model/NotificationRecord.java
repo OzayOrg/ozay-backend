@@ -14,6 +14,15 @@ public class NotificationRecord {
     private String note;
 
     private Member member;
+    private Notification notification;
+
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
+    }
 
 
     public Long getMemberId() {

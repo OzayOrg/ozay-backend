@@ -20,7 +20,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import com.ozay.web.rest.dto.page.*;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -57,6 +59,10 @@ public class PageResource {
     @Inject
     PermissionRepository permissionRepository;
 
+    @Inject
+    NotificationRecordRepository notificationRecordRepository;
+
+
     /**
      * GET  /Organization -> get organizations.
      */
@@ -89,6 +95,36 @@ public class PageResource {
         organizationPage.setUserDTOs(userDTOs);
         return new ResponseEntity<OrganizationPage>(organizationPage, HttpStatus.OK);
     }
+
+
+    @RequestMapping(
+        value = "/notification-track",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+
+    public ResponseEntity<PageNotificationTrackDTO> notificationTrack(@RequestParam(value = "building") Long buildingId, @RequestParam(value = "page", required = false) Long page){
+
+        if(buildingId == null|| buildingId == 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        long offset = 0;
+
+        if(page != null && page > 1){
+            offset = page - 1;
+        }
+
+        log.debug("REST page notification history with page {}", page);
+
+        PageNotificationTrackDTO pageNotificationTrackDTO = new PageNotificationTrackDTO();
+        pageNotificationTrackDTO.setNotificationRecords(notificationRecordRepository.findAllTrackedByBuildingId(buildingId));
+
+
+        return new ResponseEntity<>(pageNotificationTrackDTO, HttpStatus.OK);
+    }
+
+
 
 
     /**

@@ -2,6 +2,7 @@ package com.ozay.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ozay.model.Notification;
+import com.ozay.model.NotificationRecord;
 import com.ozay.repository.BuildingRepository;
 import com.ozay.repository.NotificationRecordRepository;
 import com.ozay.repository.NotificationRepository;
@@ -95,9 +96,10 @@ public class NotificationResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Notification> getAllByBuilding(@RequestParam(value = "building") Long buildingId) {
+    public List<NotificationRecord> getAllByBuilding(@RequestParam(value = "building") Long buildingId) {
         log.debug("REST request to get all Notifications by Building");
-        return notificationRepository.findAllByBuilding(buildingId);
+        //return notificationRepository.findAllByBuilding(buildingId);
+        return notificationRecordRepository.findAllTrackedByBuildingId(buildingId);
     }
 
     /**
