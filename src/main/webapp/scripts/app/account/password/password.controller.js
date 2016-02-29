@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('ozayApp')
-    .controller('PasswordController', function ($scope, Auth, Principal) {
+    .controller('PasswordController', function ($scope, Auth, Principal, MenuSearchState) {
+        $scope.buildingInformation = MenuSearchState;
         Principal.identity().then(function(account) {
             $scope.account = account;
         });

@@ -1,0 +1,774 @@
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$first_gray : #F3F5F4;
+$second_gray : #E4E5E0;
+$third_gray: #E7E3E4;
+
+
+// bower:scss
+@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
+// endbower
+
+body {
+    background: $first_gray;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.development {
+    position: absolute;
+    width: 149px;
+    height: 149px;
+    top: 0;
+    left: 0;
+    border: 0;
+    z-index: 1000;
+    background-image: url("../images/development_ribbon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.navbar-version {
+    font-size: 10px;
+    color: #ccc
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 60px;
+}
+
+.hero-unit h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.error {
+    color: white;
+    background-color: red;
+}
+
+.hipster {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background: url("../images/hipster.png") no-repeat center top;
+    background-size: contain;
+}
+
+.pad {
+    padding: 10px;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    .hipster {
+        background: url("../images/hipster2x.png") no-repeat center top;
+        background-size: contain;
+    }
+}
+
+/* make sure browsers use the pointer cursor for anchors, even with no href */
+a:hover {
+  cursor: pointer;
+}
+
+.hand {
+    cursor: pointer;
+}
+
+#threadDump .popover, #healthCheck .popover {
+    top: inherit;
+    display: block;
+    font-size: 10px;
+    max-width: 1024px;
+}
+
+#healthCheck .popover {
+    margin-left: -50px;
+}
+
+.health-details {
+    min-width: 400px;
+}
+
+.alert .popover pre {
+    font-size: 10px;
+}
+
+/* start Password strength bar style */
+ul#strength {
+    display:inline;
+    list-style:none;
+    margin:0;
+    margin-left:15px;
+    padding:0;
+    vertical-align:2px;
+}
+
+.point:last {
+    margin:0 !important;
+}
+.point {
+    background:#DDD;
+    border-radius:2px;
+    display:inline-block;
+    height:5px;
+    margin-right:1px;
+    width:20px;
+}
+/* end Password strength bar style */
+/* Custom alerts for notification */
+.alerts .alert{
+    text-overflow: ellipsis;
+}
+.alert pre{
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+/* end of Custom alerts for notification */
+
+:focus {
+  outline: none;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+/*
+    Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
+    A quick fix is to change .side-menu to
+
+    -> position:absolute
+
+    and uncomment the code below.
+    You also need to uncomment
+
+    -> <div class="absolute-wrapper"> </div> in the html file
+
+    you also need to tweek the animation. Just uncomment the code in that section
+    --------------------------------------------------------------------------------------------------------------------
+    If you want to make it really neat i suggest you look into an alternative like http://areaaperta.com/nicescroll/
+    This will allow the menu to say fixed on body scoll and scoll on the side bar if it get to large
+*/
+/*.absolute-wrapper{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background-color: $first_gray;
+    border-right: 1px solid $first_gray;
+}*/
+
+.side-menu {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background-color: $first_gray;
+  border-right: 1px solid $first_gray;
+  overflow: auto;
+}
+.side-menu .navbar {
+  border: none;
+}
+.side-menu .navbar-header {
+  width: 100%;
+  border-bottom: 1px solid $first_gray;
+}
+.side-menu .navbar-nav .active a {
+  background-color: transparent;
+  margin-right: -1px;
+
+}
+.navbar-nav > li.active > a, .navbar-nav > li.active > a:hover, .navbar-nav > li.active > a:focus{
+    border-right: 5px solid black !important;
+}
+.side-menu .navbar-nav li, .side-menu .navbar-nav li:focus, .side-menu .navbar-nav li:hover {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid $first_gray !important;
+}
+.side-menu .navbar-nav li a {
+  padding: 15px;
+}
+.side-menu .navbar-nav li a .glyphicon {
+  padding-right: 10px;
+}
+.side-menu li {
+  border: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+.side-menu li .caret {
+  float: right;
+  margin: 9px 5px 0;
+}
+.side-menu li .indicator {
+  float: right;
+}
+.side-menu li > a {
+  border-bottom: 1px solid $first_gray;
+}
+.side-menu li .panel-body {
+  padding: 0;
+  background-color: #f3f3f3;
+}
+.side-menu li .panel-body .navbar-nav {
+  width: 100%;
+}
+.side-menu li .panel-body .navbar-nav li {
+  padding-left: 15px;
+  border-bottom: 1px solid #FFF;
+}
+.side-menu li .panel-body .navbar-nav li:last-child {
+  border-bottom: none;
+}
+.side-menu li .panel-body .panel > a {
+  margin-left: -20px;
+  padding-left: 35px;
+}
+.side-menu li .panel-body .panel-body {
+  margin-left: -15px;
+}
+.side-menu li .panel-body .panel-body li {
+  padding-left: 30px;
+}
+.side-menu li .panel-body .panel-body li:last-child {
+  border-bottom: 1px solid $first_gray;
+}
+.side-menu #search-trigger {
+  background-color: #f3f3f3;
+  border: 0;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 18px;
+}
+.side-menu .brand-name-wrapper {
+  min-height: 50px;
+}
+.side-menu .brand-name-wrapper .navbar-brand {
+
+}
+.side-menu #search {
+  position: relative;
+  z-index: 1000;
+}
+.side-menu #search .panel-body {
+  padding: 0;
+}
+.side-menu #search .panel-body .navbar-form {
+  padding: 0;
+  padding-right: 50px;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  border-top: 1px solid $first_gray;
+}
+.side-menu #search .panel-body .navbar-form .form-group {
+  width: 100%;
+  position: relative;
+}
+.side-menu #search .panel-body .navbar-form input {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  height: 50px;
+}
+.side-menu #search .panel-body .navbar-form .btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #f3f3f3;
+  padding: 15px 18px;
+}
+/* Main body section */
+.side-body {
+  margin-left: 250px;
+}
+/* small screen */
+@media (max-width: 768px) {
+  .side-menu {
+    position: relative;
+    width: 100%;
+    height: 0;
+    border-right: 0;
+    border-bottom: 1px solid $first_gray;
+  }
+  .side-menu .brand-name-wrapper .navbar-brand {
+    display: inline-block;
+  }
+  /* Slide in animation */
+  @-moz-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @-webkit-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 10px;
+    }
+  }
+  @-moz-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @-webkit-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  /* Slide side menu*/
+  /* Add .absolute-wrapper.slide-in for scrollable menu -> see top comment */
+  .side-menu-container > .navbar-nav.slide-in {
+    -moz-animation: slidein 300ms forwards;
+    -o-animation: slidein 300ms forwards;
+    -webkit-animation: slidein 300ms forwards;
+    animation: slidein 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .side-menu-container > .navbar-nav {
+    /* Add position:absolute for scrollable menu -> see top comment */
+    position: fixed;
+    left: -300px;
+    width: 300px;
+    top: 43px;
+    height: 100%;
+    border-right: 1px solid $first_gray;
+    background-color: $second_gray;
+  }
+  .side-menu-container > .activated {
+     -moz-animation: slideout 300ms forwards;
+     -o-animation: slideout 300ms forwards;
+     -webkit-animation: slideout 300ms forwards;
+     animation: slideout 300ms forwards;
+     -webkit-transform-style: preserve-3d;
+     transform-style: preserve-3d;
+  }
+  /* Uncomment for scrollable menu -> see top comment */
+  /*.absolute-wrapper{
+        width:285px;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }*/
+  @-moz-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @-webkit-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 300px;
+    }
+  }
+  @-moz-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @-webkit-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  /* Slide side body*/
+  .side-body {
+    margin-left: 0;
+    margin-top: 50px;
+    position: relative;
+  }
+  .side-body.loaded{
+    -moz-animation: bodyslideout 300ms forwards;
+    -o-animation: bodyslideout 300ms forwards;
+    -webkit-animation: bodyslideout 300ms forwards;
+    animation: bodyslideout 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .body-slide-in.loaded {
+    -moz-animation: bodyslidein 300ms forwards;
+    -o-animation: bodyslidein 300ms forwards;
+    -webkit-animation: bodyslidein 300ms forwards;
+    animation: bodyslidein 300ms forwards;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  /* Hamburger */
+  .navbar-toggle {
+    border: 0;
+    float: left;
+    padding: 18px;
+    margin: 0;
+    border-radius: 0;
+    background-color: #f3f3f3;
+  }
+  /* Search */
+  #search .panel-body .navbar-form {
+    border-bottom: 0;
+  }
+  #search .panel-body .navbar-form .form-group {
+    margin: 0;
+  }
+  .navbar-header {
+    /* this is probably redundant */
+    position: fixed;
+    z-index: 3;
+    background-color: $first_gray;
+  }
+  /* Dropdown tweek */
+  .side-menu li .panel-body .navbar-nav {
+    margin: 0;
+  }
+}
+
+/* Custom */
+$global_orange : #FFC600;
+
+input, textarea, select{
+    font-size:16px !important;
+}
+.table > thead > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > th,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > th,
+  .table > tfoot > tr > td {
+    vertical-align:middle !important;
+}
+
+.delete-td{
+    text-align:center;
+    width:80px;
+}
+
+#content{
+    overflow-x: hidden;
+}
+
+#ozay-header{
+    display:none;
+    z-index:10000;
+}
+
+#desktop-search-div{
+    border: 1px solid $first_gray;
+    padding:10px;
+}
+.brand-name-wrapper{
+    background-color:$global_orange;
+}
+
+#ozay-brand-wrapper{
+    float:none;
+    height:40px;
+    padding:0;
+}
+.navbar-toggle .icon-bar  {
+    width:15px;
+}
+
+.navbar-brand > img{
+    position: absolute;
+    left: 42%;
+}
+
+.side-menu{
+    overflow-y:auto;
+    background-color:$second_gray;
+    div.side-menu-container > ul > li:not(#profile-li){
+        background-color:$second_gray;
+    }
+
+    .panel-body ul li{
+        border-bottom:1px solid #FFF;
+    }
+    .panel-collapse ul li{
+        background-color:$first_gray;
+    }
+}
+.side-menu-container > ul{
+    width:250px;
+    background-color:$second_gray;
+    padding-bottom:50px;
+    border:none;
+ }
+
+select#building-list {
+    margin: 0 auto;
+    margin-bottom:10px;
+    width: 100%;
+    background: url(/assets/images/down.png) right no-repeat #fff;
+    color: #000;
+    padding: 3px 5px 3px 5px;
+    background-size: 20px 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    border-radius: 0 0 5px 5px;
+}
+
+#nav-profile-img{
+    position:absolute;
+    background-color:silver;
+    border-radius: 50%;
+}
+
+li#profile-li {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    min-height: 82px;
+    background-color:$first_gray;
+}
+
+#login-page{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:$global_orange;
+    z-index:10000;
+
+    .flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 100%;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #login-btn {
+        padding-top: 10px;
+        width: 100%;
+        text-align: center;
+        border: 2px solid #fcfcfc;
+        color: #fcfcfc;
+        background: -webkit-linear-gradient(left,#ffc911 0,#ffe000 50%,#ffc911 100%);
+        background: -webkit-linear-gradient(left, #ffc911 0, #ffe000 50%, #ffc911 100%);
+        background: linear-gradient(to right,#ffc911 0,#ffe000 50%,#ffc911 100%);
+    }
+}
+
+#logo {
+    max-width: 300px;
+}
+
+a{
+    text-decoration: none !important;
+}
+a:focus, a:hover{
+    border: none!important;
+    outline:none;
+}
+
+a > button{
+    color:black;
+}
+
+.checkbox-ul{
+    list-style-type: none;
+    padding:0;
+    a{
+        display:block;
+        padding:10px;
+        min-width:100px;
+        color:black;
+    }
+    a:focus, a:hover{
+        border: none!important;
+    }
+    li{
+        border:1px solid silver;
+        text-align:center;
+        display:inline-block;
+        background-color:$first_gray;
+    }
+    li.active{
+        background-color:$second_gray;
+    }
+
+    input[type='checkbox']{
+        display:none;
+    }
+}
+
+#notification-content{
+    .form-group{
+        margin-bottom:0;
+    }
+    .row{
+        margin-bottom:15px;
+    }
+    label{
+        margin-top:7px;
+    }
+    textarea {
+        resize: none;
+    }
+}
+
+@media screen and (max-width:767px){
+    .navbar-nav{
+        margin: 7.5px -10px;
+    }
+}
+
+div.side-body{
+    .page-title-wrapper{
+        background-color:$second_gray;
+        min-height: 85px;
+    }
+    h3{
+        margin-top:40px;
+    }
+    .side-body-content{
+        padding-top:15px;
+        padding-bottom:15px;
+    }
+    .side-body-inner-content{
+        padding-top:15px;
+        padding-bottom:15px;
+    }
+    .main-content{
+        background-color:#FFF;
+    }
+    .main-content-wrapper{
+        border:1px solid black;
+    }
+    .main-content-title{
+        background-color:$third_gray;
+        min-height:60px;
+        h4{
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    body{
+        padding-top:50px;
+    }
+    #ozay-header{
+        display:block;
+        position:fixed;
+        top:0;
+        height:50px;
+        width:100%;
+        background-color:$global_orange;
+    }
+}

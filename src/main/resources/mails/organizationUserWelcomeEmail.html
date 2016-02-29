@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Ozay Organization User invitation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:text="#{email.organizationUser.greeting(${name})}">
+            Dear
+        </p>
+        <p th:text="#{email.organizationUser.greeting(${organization})}">
+            Your Ozay account has been created, please click on the URL below to activate it:
+        </p>
+        <p>
+            <a th:href="@{|${baseUrl}/#/activate-organization-user?key=${user.activationKey}|}">
+                Activation Link
+            </a>
+        </p>
+        <p>
+            <span th:text="#{email.organizationUser.text2}">Regards, </span>
+            <br/>
+            <em th:text="#{email.signature}">Ozay</em>
+        </p>
+    </body>
+</html>

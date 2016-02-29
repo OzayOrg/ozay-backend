@@ -1,0 +1,60 @@
+<div ng-cloak class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div my-shared-scope></div>
+            <form name="form" class="form" role="form" ng-submit="form.$valid && submit()" novalidate>
+                <div class="main-content-wrapper">
+                    <div class="main-content-title">
+                        <div class="row">
+                            <h4 class="col-xs-12">
+                                {{contentTitle}}
+                                <span class="pull-right">
+                                    <button class="btn btn-default" ng-show="organizationUser.activated == false" type="button" ng-click="sendInvitation()" ng-disabled="!button || form.$dirty" class="btn button">Invite</button>
+                                    <button class="btn btn-default" type="submit" ng-click="submitted=true;" ng-disabled="!button" class="btn button">Save</button>
+                                    <a ui-sref="organization-detail({organizationId:organizationId})">
+                                        <button class="btn btn-default">Cancel</button>
+                                    </a>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="side-body-inner-content">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.firstName.$invalid}">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" ng-model="organizationUser.firstName" ng-readonly="organizationUser.activated == true">
+                                        <p ng-show="submitted && form.firstName.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.lastName.$invalid}">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" ng-model="organizationUser.lastName" ng-readonly="organizationUser.activated == true" required>
+                                        <p ng-show="submitted && form.lastName.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.email.$invalid}">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="" ng-model="organizationUser.email" ng-readonly="organizationUser.activated == true" required>
+                                        <p ng-show="submitted && form.email.$error.required" class="help-block has-error">Required</p>
+                                        <p ng-show="submitted && form.email.$error.email" class="help-block has-error">This e-mail is invalid.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Access</label>
+                                        <ul class="checkbox-ul">
+                                            <ul class="checkbox-ul">
+                                                <li ng-class="{'active': access[obj.id],'inactive': !access[obj.id]}" ng-repeat="obj in accessList"><a ng-click="access[obj.id] = !access[obj.id]; organizationUserPermissionsClicked(obj.id, access[obj.id])"><input ng-model="access[obj.id]" type="checkbox" value='{{obj.id}}' name="{{obj.id}}" >{{obj.label}}</a></li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title th:text="#{email.organizationUserInvitation.title}">Organization User Invitation</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-<p th:text="#{email.organizationUserInvitation.greeting(${user.firstName})}">
-    Dear
-</p>
-<p th:text="#{email.organizationUserInvitation.text1(${organization.name})}">
-    You are invited by Ozay.
-</p>
-<p>
-    <a th:href="@{|${baseUrl}/#/organization-user-activate?key=${organizationUserActivationKey.activationKey}|}">
-        Register Link</a>
-</p>
-<p>
-    <span th:text="#{email.activation.text2}">Regards, </span>
-    <br/>
-    <em th:text="#{email.signature}">JHipster.</em>
-</p>
-</body>
+    <head>
+        <title>Ozay Organization User invitation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:text="#{email.organizationUser.greeting(${user.firstName}, ${user.lastName})}">
+            Dear
+        </p>
+        <p th:text="#{email.organizationUser.text1(${organization})}">
+            Your Ozay account has been created, please click on the URL below to activate it:
+        </p>
+        <p>
+            <a th:href="@{|${baseUrl}/#/organization-user-register?key=${activationKey}|}">
+                Activation Link
+            </a>
+        </p>
+        <p>
+            <span th:text="#{email.organizationUser.text2}">Regards, </span>
+            <br/>
+            <em th:text="#{email.signature}">Ozay</em>
+        </p>
+    </body>
 </html>

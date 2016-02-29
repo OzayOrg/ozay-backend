@@ -1,0 +1,23 @@
+{
+  "name": "kendo-ui-all",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Landish/kendo-ui-all.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Landish/kendo-ui-all/issues"
+  },
+  "homepage": "https://github.com/Landish/kendo-ui-all",
+  "dependencies": {
+    "del": "^1.2.0",
+    "gulp-download": "0.0.1"
+  }
+}

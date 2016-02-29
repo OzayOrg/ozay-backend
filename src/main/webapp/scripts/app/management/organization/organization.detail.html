@@ -1,0 +1,109 @@
+<div class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="main-content-wrapper">
+                <div class="main-content-title">
+                    <div class="row">
+                        <h4 class="col-xs-12">
+                            Organization User List
+                            <span class="pull-right" hasAnyAuthority="['ROLE_ADMIN', 'ORGANIZATION_HAS_ACCESS']">
+                                <a ui-sref='organization-user-new({organizationId:organizationId})' has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ORGANIZATION-USER_POST">
+                                    <button class="btn btn-default">
+                                        Add
+                                    </button>
+                                </a>
+                                <a ui-sref="management">
+                                    <button class="btn btn-default">
+                                        Back
+                                    </button>
+                                </a>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="side-body-inner-content">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <th><a href="" ng-click="predicate1 = 'firstName'; reverse=!reverse">First Name</a></th>
+                                        <th><a href="" ng-click="predicate1 = 'lastName'; reverse=!reverse">Last Name</a></th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody ng-repeat="user in users | orderBy:predicate1:reverse">
+                                        <td>{{user.firstName}}</td>
+                                        <td>{{user.lastName}}</td>
+                                        <td>
+                                            <a has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ORGANIZATION-USER_POST" ui-sref="organization-user-edit({organizationId:organizationId, organizationUserId:user.id})"><button class="btn btn-default">
+                                                Edit
+                                            </button></a>
+                                        </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2></h2>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="main-content-wrapper">
+                <div class="main-content-title">
+                    <div class="row">
+                        <h4 class="col-xs-12">
+                            Building List
+                            <span class="pull-right">
+                                <a ui-sref="building-new({organizationId:organizationId})" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, BUILDING_POST">
+                                    <button class="btn btn-default">
+                                        Add
+                                    </button>
+                                </a>
+                                <a ui-sref="management">
+                                    <button class="btn btn-default">
+                                        Back
+                                    </button>
+                                </a>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="side-body-inner-content">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <th><a href="" ng-click="predicate2 = 'name'; reverse1=!reverse1">Name</a></th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody ng-repeat="building in buildings | orderBy:predicate2:reverse1">
+                                        <td>{{building.name}}</td>
+                                        <td>
+                                            <a has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, BUILDING_PUT" ui-sref="building-edit({organizationId:organizationId, buildingId:building.id})"><button class="btn btn-default">
+                                                Edit
+                                            </button></a>
+                                            &nbsp;
+                                            <a ui-sref="role({organizationId:organizationId, buildingId:building.id})"><button class="btn btn-default">
+                                                Roles
+                                            </button></a>
+                                        </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

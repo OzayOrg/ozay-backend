@@ -7,8 +7,8 @@ angular.module('ozayApp')
                 parent: 'admin',
                 url: '/logs',
                 data: {
-                    roles: ['ROLE_ADMIN'],
-                    pageTitle: 'logs.title'
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: 'Logs'
                 },
                 views: {
                     'content@': {
@@ -17,10 +17,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('logs');
-                        return $translate.refresh();
-                    }]
+                    
                 }
             });
     });

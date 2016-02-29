@@ -25,3 +25,11 @@ angular.module('ozayApp')
             }
         };
     });
+
+
+angular.module('ozayApp').directive('mySharedScope', function () {
+    return {
+        restrict: 'A',
+        templateUrl: '/scripts/components/form/form-messages.html'
+    };
+});

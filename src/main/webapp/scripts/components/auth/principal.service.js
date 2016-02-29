@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ozayApp')
-    .factory('Principal', function Principal($q, Account) {
+    .factory('Principal', function Principal($q, $stateParams, Account, UserInformation) {
         var _identity,
             _authenticated = false;
 
@@ -12,24 +12,24 @@ angular.module('ozayApp')
             isAuthenticated: function () {
                 return _authenticated;
             },
-            isInRole: function (role) {
+            hasAuthority: function (authority) {
                 if (!_authenticated) {
-                   return false;
-               }
+                    return $q.when(false);
+                }
 
-               return this.identity().then(function(_id) {
-                   return _id.roles && _id.roles.indexOf(role) !== -1;
-               }, function(err){
-                   return false;
-               });
+                return this.identity().then(function(_id) {
+                    return _id.authorities && _id.authorities.indexOf(authority) !== -1;
+                }, function(err){
+                    return false;
+                });
             },
-            isInAnyRole: function (roles) {
-                if (!_authenticated || !_identity || !_identity.roles) {
+            hasAnyAuthority: function (authorities) {
+                if (!_authenticated || !_identity || !_identity.authorities) {
                     return false;
                 }
 
-                for (var i = 0; i < roles.length; i++) {
-                    if (this.isInRole(roles[i])) {
+                for (var i = 0; i < authorities.length; i++) {
+                    if (_identity.authorities.indexOf(authorities[i]) !== -1) {
                         return true;
                     }
                 }
@@ -56,17 +56,22 @@ angular.module('ozayApp')
                 }
 
                 // retrieve the identity data from the server, update the identity object, and then resolve.
-                Account.get().$promise
-                    .then(function (account) {
-                        _identity = account.data;
-                        _authenticated = true;
-                        deferred.resolve(_identity);
-                    })
-                    .catch(function() {
-                        _identity = null;
-                        _authenticated = false;
-                        deferred.resolve(_identity);
-                    });
+                UserInformation.process().then(function(){
+                    Account.get().$promise
+                        .then(function (account) {
+                            _identity = account.data;
+                            _authenticated = true;
+                            deferred.resolve(_identity);
+                        })
+                        .catch(function() {
+                            _identity = null;
+                            _authenticated = false;
+                            deferred.resolve(_identity);
+                        });
+                });
+
+
+
                 return deferred.promise;
             }
         };

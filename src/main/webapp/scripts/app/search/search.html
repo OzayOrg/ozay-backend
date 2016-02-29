@@ -1,0 +1,41 @@
+<div class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="main-content-wrapper">
+                <div class="main-content-title">
+                    <div class="row">
+                        <h4 class="col-xs-12">
+                            {{pageTitle}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="side-body-inner-content">
+                                <div ng-if="notifications && notifications != null">
+                                    <h4><u>Notification Result</u></h4>
+                                    <div ng-repeat="notification in notifications">
+                                        <span><a ui-sref="notification-record-detail({notificationId:notification.id})">{{notification.subject}}</a></span>
+                                        &nbsp;
+                                        <span>{{notification.createdDate | date: "MM/dd/yyyy"}}</span>
+                                    </div>
+                                </div>
+                                <div ng-if="members && members != null">
+                                    <h4><u>Members Result</u></h4>
+                                    <div ng-repeat="member in members">
+                                        <a ui-sref="member-edit({memberId:member.id})">
+                                        <span>{{member.firstName}}</span> <span>{{member.lastName}}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

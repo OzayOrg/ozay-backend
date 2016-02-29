@@ -1,39 +1,50 @@
 'use strict';
 
-angular.module('ozayApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll'])
+angular.module('ozayApp', ['LocalStorageModule',
+    'ui.bootstrap', // for modal dialogs
+    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'infinite-scroll',
+    'naturalSort',
+    'ui.bootstrap',
+    'textAngular',
+    'angularjs-dropdown-multiselect',
+])
 
-    .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
+.run(function($rootScope, $location, $window, $http, $state, $q, $stateParams, Auth, Principal, Building, UserInformation, $cookies, ENV, VERSION) {
+
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
-        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+        $rootScope.firstAuthentication = false;// When true and building or organization
+
+        $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
             if (Principal.isIdentityResolved()) {
                 Auth.authorize();
+                $rootScope.firstAuthentication = true;
+            } else {
+                $rootScope.firstAuthentication = false;
             }
-
-            // Update the language
-            Language.getCurrent().then(function (language) {
-                $translate.use(language);
-            });
         });
 
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-            var titleKey = 'global.title';
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
-            $rootScope.previousStateName = fromState.name;
-            $rootScope.previousStateParams = fromParams;
+            var titleKey = 'ozay';
+
+            // Remember previous state unless we've been redirected to login or we've just
+            // reset the state memory after logout. If we're redirected to login, our
+            // previousState is already set in the authExpiredInterceptor. If we're going
+            // to login directly, we don't want to be sent to some previous state anyway
+            if (toState.name != 'login' && $rootScope.previousStateName) {
+                $rootScope.previousStateName = fromState.name;
+                $rootScope.previousStateParams = fromParams;
+            }
 
             // Set the page title key to the one configured in state or use default one
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
-            $translate(titleKey).then(function (title) {
-                // Change window title with translated one
-                $window.document.title = title;
-            });
+            $window.document.title = titleKey;
         });
 
         $rootScope.back = function() {
@@ -45,43 +56,7 @@ angular.module('ozayApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             }
         };
     })
-
-    .factory('authInterceptor', function ($rootScope, $q, $location, localStorageService) {
-        return {
-            // Add authorization token to headers
-            request: function (config) {
-                config.headers = config.headers || {};
-                var token = localStorageService.get('token');
-
-                if (token && token.expires_at && token.expires_at > new Date().getTime()) {
-                    config.headers.Authorization = 'Bearer ' + token.access_token;
-                }
-
-                return config;
-            }
-        };
-    })
-
-    .factory('authExpiredInterceptor', function ($rootScope, $q, $injector, localStorageService) {
-        return {
-            responseError: function (response) {
-                // token has expired
-                if (response.status === 401 && (response.data.error == 'invalid_token' || response.data.error == 'Unauthorized')) {
-                    localStorageService.remove('token');
-                    var Principal = $injector.get('Principal');
-                    if (Principal.isAuthenticated()) {
-                        var Auth = $injector.get('Auth');
-                        Auth.authorize(true);
-                    }
-                }
-                return $q.reject(response);
-            }
-        };
-    })
-    .config(function(uiSelectConfig) {
-      uiSelectConfig.theme = 'select2';
-    })
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
@@ -93,33 +68,23 @@ angular.module('ozayApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                 'navbar@': {
                     templateUrl: 'scripts/components/navbar/navbar.html',
                     controller: 'NavbarController'
+                },
+                'title@': {
+                    templateUrl: 'scripts/components/layout/title.html',
                 }
             },
             resolve: {
                 authorize: ['Auth',
-                    function (Auth) {
+                    function(Auth) {
                         return Auth.authorize();
                     }
                 ],
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('global');
-                    $translatePartialLoader.addPart('language');
-                    return $translate.refresh();
-                }]
             }
         });
 
-        $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.interceptors.push('errorHandlerInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.interceptors.push('notificationInterceptor');
 
-        // Initialize angular-translate
-        $translateProvider.useLoader('$translatePartialLoader', {
-            urlTemplate: 'i18n/{lang}/{part}.json'
-        });
-
-        $translateProvider.preferredLanguage('en');
-        $translateProvider.useCookieStorage();
-
-        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
-        tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
     });

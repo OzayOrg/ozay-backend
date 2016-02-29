@@ -1,8 +1,8 @@
 {
   "generator-jhipster": {
     "baseName": "ozay",
-    "packageName": "com.ozay",
-    "packageFolder": "com/ozay",
+    "packageName": "com.ozay.backend",
+    "packageFolder": "com/ozay/backend",
     "authenticationType": "oauth2",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": "no",
@@ -10,11 +10,12 @@
     "databaseType": "sql",
     "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
-    "useCompass": false,
+    "searchEngine": "no",
+    "useSass": true,
     "buildTool": "maven",
     "frontendBuilder": "grunt",
     "javaVersion": "8",
-    "searchEngine": "no",
-    "rememberMeKey": "7b253b2ed73102a7c431bad3f7441bacebbbcac6"
+    "enableTranslation": false,
+    "rememberMeKey": "d0ad98419c3b64bf4581c98c98d03390ba5578cb"
   }
 }

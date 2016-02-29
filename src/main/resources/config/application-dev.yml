@@ -1,43 +1,63 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+spring:
+    profiles:
+        active: dev
+    datasource:
+        driver-class-name: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://ec2-54-83-10-210.compute-1.amazonaws.com/d7iegu76smkaqb?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+        name: d7iegu76smkaqb
+        username: pymqxayzqcupig
+        password: bbfQfAnPae6Fk4jrJDChq4qOpN
+    jpa:
+        database-platform: com.ozay.backend.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
+        show_sql: true
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    messages:
+        cache-seconds: 1
+    thymeleaf:
+        cache: false
+
+liquibase:
+    contexts: dev
+
 server:
     port: 8080
 
-spring:
-    profiles: dev
+# ===================================================================
+# JHipster specific properties
+# ===================================================================
 
-    datasource:
-                dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-                url:  jdbc:postgresql://ec2-54-83-10-210.compute-1.amazonaws.com/d7iegu76smkaqb?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-                databaseName: d7iegu76smkaqb
-                serverName: ec2-54-83-10-210.compute-1.amazonaws.com
-                username: pymqxayzqcupig
-                password: bbfQfAnPae6Fk4jrJDChq4qOpN
-
-    jpa:
-        database-platform: org.hibernate.dialect.PostgreSQLDialect
-        database: POSTGRESQL
-        openInView: false
-        show_sql: true
-        generate-ddl: false
-        hibernate:
-            ddl-auto: none
-            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
-        properties:
-            hibernate.cache.use_second_level_cache: false
-            hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
-
-    mail:
-        baseUrl: http://localhost:8080
-
-    thymeleaf:
-        mode: XHTML
-        cache: false
-        viewNames: error
-
-metrics:
-    jmx.enabled: true
-    graphite:
-        enabled: false
-        host: localhost
-        port: 2003
-        prefix: ozay
+jhipster:
+    datasource: # JHipster-specific configuration, in addition to the standard spring.datasource properties
+        serverName: localhost
+    cache: # Hibernate 2nd level cache, used by CacheConfiguration
+        timeToLiveSeconds: 3600
+        ehcache:
+            maxBytesLocalHeap: 16M
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx.enabled: true
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: ozay

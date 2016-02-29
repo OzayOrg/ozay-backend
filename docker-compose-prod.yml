@@ -1,0 +1,11 @@
+jhipster-prod-postgresql:
+  container_name: ozay-prod-postgresql
+  image: postgres
+  # volumes:
+  # - ~/volumes/jhipster/ozay/prod-postgresql/:/var/lib/postgresql/
+  environment:
+  - POSTGRES_USER=ozay
+  - POSTGRES_PASSWORD=
+  ports:
+  - "5432:5432"
+

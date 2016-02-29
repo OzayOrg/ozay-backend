@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('ozayApp')
-    .config(function ($stateProvider) {
+    .config(function($stateProvider) {
         $stateProvider
             .state('home', {
                 parent: 'site',
                 url: '/',
                 data: {
-                    roles: []
+                    authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
@@ -16,10 +16,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('main');
-                        return $translate.refresh();
-                    }]
+
                 }
             });
     });

@@ -1,98 +1,181 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/"><span translate="global.title">jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
-            <ul class="nav navbar-nav nav-pills navbar-right">
-                <li ui-sref-active="active">
-                    <a ui-sref="home">
-                        <span class="glyphicon glyphicon-home"></span>
-                        <span translate="global.menu.home">Home</span>
-                    </a>
-                </li>
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-th-list"></span>
-                                    <span class="hidden-tablet" translate="global.menu.entities.main">
-                                        Entities
-                                    </span>
-                                    <b class="caret"></b>
-                                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- JHipster will add entities to the menu here -->
-                    </ul>
-                </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <span class="hidden-tablet" translate="global.menu.account.main">
-                                        Account
-                                    </span>
-                                    <b class="caret"></b>
-                                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span class="glyphicon glyphicon-wrench"></span>
-                            &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span class="glyphicon glyphicon-lock"></span>
-                            &#xA0;<span translate="global.menu.account.password">Password</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>
-                            &#xA0;<span translate="global.menu.account.logout">Log out</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span translate="global.menu.account.login">Authenticate</span></a></li>
+<div id="ozay-header" class="text-center">
+    <a href="/#/"><img src="/assets/images/OZAY_LOGIN_TOP.png" height="50px"/></a>
+</div>
 
-                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign"></span>
-                            &#xA0;<span translate="global.menu.account.register">Register</span></a></li>
-                    </ul>
-                </li>
-                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-tower"></span>
-                                    <span class="hidden-tablet" translate="global.menu.admin.main">Admin</span>
-                                    <b class="caret"></b>
-                                </span>
+<div class="side-menu">
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class="brand-wrapper">
+                <!-- Hamburger -->
+                <button type="button" class="navbar-toggle" ng-click="button_state.changeState();navClicked();">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+
+                <div class="hidden-sm visible-xs">
+                    <!-- Brand -->
+                    <div class="brand-name-wrapper">
+                        <a id="ozay-brand-wrapper" class="text-center navbar-brand" href="#">
+                            <img src="/assets/images/OZAY_LOGIN_TOP.png" height="50px"/>
+                        </a>
+                    </div>
+
+                    <!-- Search -->
+                    <a data-toggle="collapse" data-target="#search" class="btn btn-default" id="search-trigger">
+                        <span class="glyphicon glyphicon-search"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="metrics"><span class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span translate="global.menu.admin.metrics">Metrics</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="health"><span class="glyphicon glyphicon-heart"></span>
-                            &#xA0;<span translate="global.menu.admin.health">Health</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt"></span>
-                            &#xA0;<span translate="global.menu.admin.configuration">Configuration</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell"></span>
-                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>
-                            &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>
-                            &#xA0;<span translate="global.menu.admin.apidocs">API Docs</span></a></li>
-                    </ul>
-                </li>
-                <li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-flag"></span>
-                                    <span class="hidden-tablet" translate="global.menu.language">Language</span>
-                                    <b class="caret"></b>
-                                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li active-menu="{{language}}" ng-repeat="language in languages">
-                            <a href="" ng-click="changeLanguage(language)">{{'language.' + language| translate}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+
+                    <!-- Search body -->
+                    <div id="search" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form class="navbar-form" role="search" ng-submit="searchBtnMobileClicked()">
+                                <div class="form-group">
+                                    <input type="text" ng-model="mobileKeyword" ng-change="mobileKeywordChange(mobileKeyword)" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-ok"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+
+
+        <!-- Main Menu -->
+        <div class="side-menu-container">
+            <ul class="nav navbar-nav" ng-class="{'slide-in' : button_state.getState(), 'activated': navigationLoaded}" >
+                <li id="profile-li">
+                    <select id="building-list" ng-change="changeBuilding()" ng-model="selectedBuilding" ng-options="building.id as building.name for building in buildingList">
+                    </select>
+                    <div>
+                        <img id="nav-profile-img" src="/assets/images/user-area-img.png" height="34px;" />
+                    </div>
+                    <div>
+                        <h4 class="text-center">
+                            <span ng-if="account.firstName != null || account.lastName != null">
+                                {{account.firstName}} {{account.lastName}}
+                            </span>
+                            <span ng-if="account.firstName == null && account.lastName == null">
+                                {{account.login}}
+                            </span>
+                        </h4>
+                    </div>
+                </li>
+                <li>
+                    <div id="desktop-search-div" class="hidden-xs">
+                        <form class="ng-pristine ng-valid" ng-submit="searchBtnClicked();">
+                            <div class="input-group custom-search-form">
+                                <input ng-model="keyword" ng-change="keywordChange(keyword)" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button id="sidenav-search-btn" class="btn btn-default" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                </li>
+                <li ng-class="{'active' : activeMenu=='home'}">
+                    <a ui-sref="home" ng-click="menuClicked('home');" ng-click="panelClicked('dashboard')">Dashboard</a>
+                </li>
+
+                <!-- Dropdown-->
+                <li class="panel panel-default" ng-show="buildingReady" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, NOTIFICATION_POST, NOTIFICATION_GET" ng-class="{'active' : activeMenu =='notification'}">
+                    <a data-toggle="collapse" data-target="#dropdown-notification" id="parent-notification" class="parent-li" ng-click="panelClicked('notification')">
+                        Notification<span class="caret"></span>
+                    </a>
+
+                    <!-- Dropdown level 1 -->
+                    <div id="dropdown-notification" class="panel-collapse collapse" ng-class="{'in' : activeMenu=='notification'}">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="notification" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, NOTIFICATION_POST" ng-click="menuClicked('notification');">Create</a></li>
+                                <li><a ui-sref="notification-record" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, NOTIFICATION_GET" ng-click="menuClicked('notification');">Archive</a></li>
+                                <li><a ui-sref="notification-track" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, NOTIFICATION_GET" ng-click="menuClicked('notification');">Track</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Dropdown events -->
+                <li class="panel panel-default" ng-show="buildingReady" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER" ng-class="{'active' : activeMenu =='events'}">
+                    <a data-toggle="collapse" data-target="#dropdown-events" id="parent-events" class="parent-li" ng-click="panelClicked('events')">
+                        Events<span class="caret"></span>
+                    </a>
+
+                    <!-- Dropdown level 1 -->
+                    <div id="dropdown-events" class="panel-collapse collapse" ng-class="{'in' : activeMenu=='events'}">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="events" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER" ng-click="menuClicked('events');">Create</a></li>
+                                <li><a ui-sref="events-record" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER" ng-click="menuClicked('events');">Track</a></li>
+                                <li><a ui-sref="events-track" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER" ng-click="menuClicked('events');">Archive</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Dropdown-->
+                <li class="panel panel-default" ng-show="buildingReady" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_GET, MEMBER_POST, MEMBER_PUT" ng-class="{'active' : activeMenu =='directory'}">
+                    <a data-toggle="collapse" data-target="#dropdown-directory" id="parent-directory" class="parent-li" ng-click="panelClicked('directory')">
+                        Directory<span class="caret"></span>
+                    </a>
+
+                    <!-- Dropdown level 1 -->
+                    <div id="dropdown-directory" class="panel-collapse collapse" ng-class="{'in' : activeMenu=='directory'}">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="member" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_GET" ng-click="menuClicked('directory');">List</a></li>
+                                <li><a ui-sref="member-new" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_POST" ng-click="menuClicked('directory');">Create</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="panel panel-default" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, ORGANIZATION_HAS_ACCESS" ng-class="{'active' : activeMenu =='management'}">
+                    <a data-toggle="collapse" data-target="#dropdown-management" id="parent-management" class="parent-li" ng-click="panelClicked('management')">
+                        Manage<span class="caret"></span>
+                    </a>
+
+                    <!-- Dropdown level 1 -->
+                    <div id="dropdown-management" class="panel-collapse collapse" ng-class="{'in' : activeMenu=='management'}">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="management" ng-click="menuClicked('management');">Organization</a></li>
+                                <li><a ng-show="organizationMenuExtra" ui-sref="organization-detail({organizationId:organizationId})" ng-click="menuClicked('management');">{{orgName}} Info</a></li>
+                                <li><a ng-show="organizationMenuExtra" ui-sref="role({organizationId:organizationId, buildingId:selectedBuilding})" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ROLE_GET" ng-click="menuClicked('management');">{{buildingName}} Roles</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <!--<li ng-class="{'active' : activeMenu.current.name=='management'}">-->
+                    <!--<a ui-sref="management">Manage</a>-->
+                <!--</li>-->
+                <!-- Dropdown-->
+                <li class="panel panel-default" ng-class="{'active' : activeMenu =='account'}">
+                    <a data-toggle="collapse" data-target="#dropdown-account" id="parent-account" class="parent-li" ng-click="panelClicked('account')">
+                        Account<span class="caret"></span>
+                    </a>
+
+                    <!-- Dropdown level 1 -->
+                    <div id="dropdown-account" class="panel-collapse collapse" ng-class="{'in' : activeMenu=='account'}">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="settings" ng-click="menuClicked('account');">Settings</a></li>
+                                <li><a ui-sref="password" ng-click="menuClicked('account');">Password</a></li>
+                                <li><a href="" ng-click="logout()">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>

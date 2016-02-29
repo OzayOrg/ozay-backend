@@ -1,0 +1,57 @@
+<div class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="main-content-wrapper">
+                <div class="main-content-title">
+                    <div class="row">
+                        <h4 class="col-xs-12">
+                            Organization List
+                            <span class="pull-right" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER">
+                                <a ui-sref='organization-new'>
+                                    <button class="btn btn-default">
+                                        Add
+                                    </button>
+                                </a>
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="side-body-inner-content">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <th><a href="" ng-click="predicate = 'name'; reverse=!reverse">Name</a></th>
+                                        <th>Action</th>
+                                        </thead>
+                                        <tbody ng-repeat="organization in organizations| orderBy:predicate:reverse">
+                                        <td>{{organization.name}}</td>
+                                        <td>
+                                            <a ui-sref="organization-edit({organizationId:organization.id})" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ORGANIZATION_PUT">
+                                                <button class="btn btn-default">
+                                                    Edit
+                                                </button>
+                                            </a>
+                                            &nbsp;
+                                            <a ui-sref="organization-detail({organizationId:organization.id})">
+                                                <button class="btn btn-default">
+                                                    Detail
+                                                </button>
+                                            </a>
+                                        </td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

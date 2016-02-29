@@ -1,62 +1,53 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html lang="en">
-
+<!doctype html>
+<html class="no-js">
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ozay</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-    <!-- build:css assets/styles/main.css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/sb-admin-2/css/metisMenu.css">
-    <link rel="stylesheet" href="bower_components/sb-admin-2/css/timeline.css">
-    <link rel="stylesheet" href="bower_components/sb-admin-2/css/sb-admin-2.css">
-    <link rel="stylesheet" href="bower_components/sb-admin-2/css/morris.css">
-    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css">
+    <!-- build:css assets/styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="styles/main.css" rel="stylesheet">
     <link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
+    <link rel='stylesheet' href='bower_components/font-awesome/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="bower_components/kendo-ui-all/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="bower_components/kendo-ui-all/styles/kendo.default.min.css" />
+
+
+    <!-- bower:css -->
+    <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- HTML5 Shim and Respond.js IE8 supp
-    ort of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-    <!--[endif]-->
-
+    <!-- build:css assets/styles/main.css -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <!-- endbuild -->
 </head>
 <body ng-app="ozayApp">
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div ui-view></div>
+<!--[if lt IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
 
+
+<div class="row" ng-controller="PageController">
+    <div ui-view="navbar" ng-cloak=""></div>
+    <div ui-view="other"></div>
+    <div ng-cloak>
+        <div id="content" class="">
+            <div class="side-body" ng-class="{'body-slide-in' : button_state.getState(), 'loaded': loaded}">
+                <div ui-view="title"></div>
+                <div ui-view="content"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <!--<p translate="footer">This is your footer</p>-->
+    </div>
+
+</div>
 
 <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
 <script>
@@ -68,79 +59,185 @@
     ga('create','UA-XXXXX-X');ga('send','pageview');
 </script>-->
 
-<!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
 <script src="bower_components/modernizr/modernizr.js"></script>
-<script src="bower_components/angular-plugin/lodash.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-ui-select/dist/select.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-<script src="scripts/http-auth-interceptor.js"></script>
-<script src="scripts/truncate.js"></script>
-<script src="scripts/utils.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/constants.js"></script>
-<script src="scripts/controllers.js"></script>
-<script src="scripts/services.js"></script>
-<script src="scripts/directives.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/affix.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/alert.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/button.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/carousel.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-<script src="bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tab.js"></script>
-<script src="bower_components/sb-admin-2/js/metisMenu.js"></script>
-<script src="scripts/components/entities/building/building.service.js"></script>
-<script src="scripts/app/entities/building/building.controller.js"></script>
-<script src="scripts/app/entities/organization/organization.controller.js"></script>
-<script src="scripts/app/entities/dashboard/dashboard.controller.js"></script>
-<script src="scripts/app/entities/notification/notification.controller.js"></script>
-<script src="scripts/app/entities/member/member.controller.js"></script>
-<script src="scripts/app/entities/organization-user/organization-user.controller.js"></script>
-<script src="scripts/app/entities/role/role.controller.js"></script>
-<script src="scripts/app/entities/notification/notification-detail.controller.js"></script>
-<script src="scripts/app/entities/notification/notification.track.controller.js"></script>
-<script src="scripts/components/entities/notification/notification.service.js"></script>
-<script src="scripts/components/entities/member/member.service.js"></script>
-<script src="scripts/components/entities/dashboard/dashboard.service.js"></script>
-<script src="scripts/components/entities/organization/organization.service.js"></script>
-<script src="scripts/components/entities/role/role.service.js"></script>
-<script src="scripts/components/entities/permission/permission.service.js"></script>
-<script src="scripts/components/entities/organization-user/organization-user.service.js"></script>
-<script src="scripts/components/entities/page/page.service.js"></script>
-<script src="scripts/app/main/main.controller.js"></script>
-<script src="scripts/components/entities/search/search.service.js"></script>
-<script src="bower_components/angular-plugin/angularjs-dropdown-multiselect.min.js"></script>
-<script src="bower_components/angular-plugin/natural-sorting/naturalSortVersionDatesCaching.js"></script>
-<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
-<script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
-<script src='bower_components/textAngular/dist/textAngular.min.js'></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="bower_components/rangy/rangy-core.js"></script>
+<script src="bower_components/rangy/rangy-classapplier.js"></script>
+<script src="bower_components/rangy/rangy-highlighter.js"></script>
+<script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+<script src="bower_components/rangy/rangy-serializer.js"></script>
+<script src="bower_components/rangy/rangy-textrange.js"></script>
+<script src="bower_components/textAngular/dist/textAngular.js"></script>
+<script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
+<!-- endbower -->
 <!-- endbuild -->
-<!--fullscreen API-->
-<script src="bower_components/angular-fullscreen/src/angular-fullscreen.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script> DON'T USE THIS... dOESN'T WORK HERE!!!!!-->
-
-<script src="bower_components/angular/angular.min.js"></script>
 
 
+<!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+<script src="scripts/app/app.js"></script>
+<script src="scripts/app/app.constants.js"></script>
+<script src="scripts/components/auth/auth.service.js"></script>
+<script src="scripts/components/auth/principal.service.js"></script>
+<script src="scripts/components/auth/authority.directive.js"></script>
+<script src="scripts/components/auth/services/account.service.js"></script>
+<script src="scripts/components/auth/services/activate.service.js"></script>
+<script src="scripts/components/auth/services/password.service.js"></script>
+<script src="scripts/components/auth/services/register.service.js"></script>
+<script src="scripts/components/form/form.directive.js"></script>
+<script src="scripts/components/form/maxbytes.directive.js"></script>
+<script src="scripts/components/form/minbytes.directive.js"></script>
+<script src="scripts/components/form/pager.directive.js"></script>
+<script src="scripts/components/form/pagination.directive.js"></script>
+<script src="scripts/components/admin/audits.service.js"></script>
+<script src="scripts/components/admin/logs.service.js"></script>
+<script src="scripts/components/admin/configuration.service.js"></script>
+<script src="scripts/components/admin/monitoring.service.js"></script>
+<script src="scripts/components/interceptor/auth.interceptor.js"></script>
+<script src="scripts/components/interceptor/errorhandler.interceptor.js"></script>
+<script src="scripts/components/interceptor/notification.interceptor.js"></script>
+<script src="scripts/components/navbar/navbar.directive.js"></script>
+<script src="scripts/components/navbar/navbar.controller.js"></script>
+<script src="scripts/components/navbar/navbar.service.js"></script>
+<script src="scripts/components/user/user.service.js"></script>
+<script src="scripts/components/util/truncate.filter.js"></script>
+<script src="scripts/components/util/base64.service.js"></script>
+<script src="scripts/components/alert/alert.service.js"></script>
+<script src="scripts/components/alert/alert.directive.js"></script>
+<script src="scripts/components/util/parse-links.service.js"></script>
+<script src="scripts/components/util/dateutil.service.js"></script>
+<script src="scripts/app/account/account.js"></script>
+<script src="scripts/app/account/activate/activate.js"></script>
+<script src="scripts/app/account/activate/activate.controller.js"></script>
+<script src="scripts/app/account/login/login.js"></script>
+<script src="scripts/app/account/login/login.controller.js"></script>
+<script src="scripts/app/account/password/password.js"></script>
+<script src="scripts/app/account/password/password.controller.js"></script>
+<script src="scripts/app/account/password/password.directive.js"></script>
+<script src="scripts/app/account/register/register.js"></script>
+<script src="scripts/app/account/register/register.controller.js"></script>
+<script src="scripts/app/account/settings/settings.js"></script>
+<script src="scripts/app/account/settings/settings.controller.js"></script>
+<script src="scripts/app/account/reset/finish/reset.finish.controller.js"></script>
+<script src="scripts/app/account/reset/finish/reset.finish.js"></script>
+<script src="scripts/app/account/reset/request/reset.request.controller.js"></script>
+<script src="scripts/app/account/reset/request/reset.request.js"></script>
+<script src="scripts/app/admin/admin.js"></script>
+<script src="scripts/app/admin/audits/audits.js"></script>
+<script src="scripts/app/admin/audits/audits.controller.js"></script>
+<script src="scripts/app/admin/configuration/configuration.js"></script>
+<script src="scripts/app/admin/configuration/configuration.controller.js"></script>
+<script src="scripts/app/admin/docs/docs.js"></script>
+<script src="scripts/app/admin/health/health.js"></script>
+<script src="scripts/app/admin/health/health.controller.js"></script>
+<script src="scripts/app/admin/health/health.modal.controller.js"></script>
+<script src="scripts/app/admin/logs/logs.js"></script>
+<script src="scripts/app/admin/logs/logs.controller.js"></script>
+<script src="scripts/app/admin/metrics/metrics.js"></script>
+<script src="scripts/app/admin/metrics/metrics.controller.js"></script>
+<script src="scripts/app/admin/metrics/metrics.modal.controller.js"></script>
+<script src="scripts/app/admin/user-management/user-management-detail.controller.js"></script>
+<script src="scripts/app/admin/user-management/user-management.controller.js"></script>
+<script src="scripts/app/admin/user-management/user-management.js"></script>
+<script src="scripts/app/entities/entity.js"></script>
+<script src="scripts/app/error/error.js"></script>
+
+<script src="assets/plug-in/angularjs-naturalsort/dist/naturalSortVersion.min.js"></script>
+<script src="assets/plug-in/angularjs-naturalsort/dist/naturalSortVersionCaching.min.js"></script>
+<script src="assets/plug-in/angularjs-naturalsort/dist/naturalSortVersionDates.min.js"></script>
+<script src="assets/plug-in/angularjs-naturalsort/dist/naturalSortVersionDatesCaching.min.js"></script>
+
+
+
+
+
+<script src="scripts/app/main/main.js"></script>
+<script src="scripts/app/main/main.controller.js"></script>
+<script src="scripts/components/auth/provider/auth.oauth2.service.js"></script>
+
+<script src="scripts/components/building/building.service.js"></script>
+
+<script src="scripts/app/management/management.js"></script>
+<script src="scripts/app/management/organization/organization.controller.js"></script>
+<script src="scripts/app/management/organization/organization.edit.controller.js"></script>
+<script src="scripts/app/management/organization/organization.js"></script>
+<script src="scripts/app/management/organization/organization.detail.controller.js"></script>
+
+<script src="scripts/components/page/page.service.js"></script>
+<script src="scripts/components/page/page.directive.js"></script>
+<script src="scripts/app/notification/notification.js"></script>
+<script src="scripts/app/notification/notification.controller.js"></script>
+<script src="scripts/components/notification/notification.service.js"></script>
+
+
+<script src="scripts/app/notification/notification.record.controller.js"></script>
+<script src="scripts/app/notification/notification.record.detail.controller.js"></script>
+<script src="scripts/components/notification-record/notification-record.service.js"></script>
+
+<script src="scripts/app/notification/notification.track.controller.js"></script>
+<script src="scripts/app/notification/notification.record.detail.controller.js"></script>
+
+<script src="scripts/app/member/member.js"></script>
+<script src="scripts/app/member/member.controller.js"></script>
+<script src="scripts/app/member/member.edit.controller.js"></script>
+<script src="scripts/components/member/member.service.js"></script>
+
+
+<script src="scripts/components/organization/organization.service.js"></script>
+<script src="scripts/components/page/page.controller.js"></script>
+
+<script src="scripts/app/management/building/building.js"></script>
+<script src="scripts/app/management/building/building.edit.controller.js"></script>
+<script src="scripts/app/management/role/role.js"></script>
+<script src="scripts/app/management/role/role.controller.js"></script>
+<script src="scripts/app/management/role/role.edit.controller.js"></script>
+<script src="scripts/components/role/role.service.js"></script>
+
+<script src="scripts/app/management/organization-user/organization-user.js"></script>
+<script src="scripts/app/management/organization-user/organization-user.edit.controller.js"></script>
+<script src="scripts/components/organization-user/organization-user.service.js"></script>
+
+<script src="scripts/components/alert/message.service.js"></script>
+
+<script src="scripts/app/account/organization-user/organization-user.js"></script>
+<script src="scripts/app/account/organization-user/organization-user-register.controller.js"></script>
+
+<script src="scripts/app/account/organization-user/organization-user-register-complete.controller.js"></script>
+
+<script src="scripts/app/search/search.js"></script>
+<script src="scripts/app/search/search.controller.js"></script>
+
+<script src="scripts/app/account/member/member-register.js"></script>
+<script src="scripts/app/account/member/member-register.controller.js"></script>
+<script src="scripts/app/account/member/member-register-complete.controller.js"></script>
+<script src="scripts/components/Invited-member/invited-member.service.js"></script>
+<!-- endbuild -->
+
+<!-- events -->
+<script src="bower_components/kendo-ui-all/js/jquery.min.js"></script>
+<script src="bower_components/kendo-ui-all/js/kendo.all.min.js"></script>
+
+<!-- events angularjs files -->
+<script src="scripts/app/events/events.js"></script>
+<script src="scripts/app/events/events.controller.js"></script>
+<script src="scripts/component/events/events.js"></script>
 
 </body>
-
 </html>

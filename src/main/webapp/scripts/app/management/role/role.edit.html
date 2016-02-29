@@ -1,0 +1,76 @@
+<div class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div my-shared-scope></div>
+            <form name="form" class="form" role="form" ng-submit="form.$valid && submit()" novalidate>
+                <div class="main-content-wrapper">
+                    <div class="main-content-title">
+                        <div class="row">
+                            <h4 class="col-xs-12">
+                                {{contentTitle}}
+                                <span class="pull-right">
+
+                                    <button class="btn btn-default" type="submit" ng-click="submitted=true;" ng-disabled="!button" class="btn button" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ROLE_POST, ROLE_PUT">Save</button>
+                                    <a ui-sref="role({organizationId:organizationId, buildingId:buildingId})">
+                                        <button class="btn btn-default">Back</button>
+                                    </a>
+                                    <button class="btn btn-danger" ng-show="showDeleteBtn" type="button" ng-click="deleteClicked();" ng-disabled="!button" class="btn button" has-any-authority="ROLE_ADMIN, ROLE_ORGANIZATION_SUBSCRIBER, ROLE_DELETE">Delete</button>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="side-body-inner-content">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.name.$invalid}">
+                                        <label for="name">Role Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="" ng-model="role.name" required>
+                                        <p ng-show="submitted && form.name.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.sortOrder.$invalid}">
+                                        <label for="sortOrder">Sort Order</label>
+                                        <input type="number" class="form-control" id="sortOrder" name="sortOrder" placeholder="" ng-model="role.sortOrder" required>
+                                        <p ng-show="submitted && form.sortOrder.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Organization Role</label>
+                                        <ul class="checkbox-ul">
+                                            <li ng-class="{'active': role.organizationUserRole,'inactive': !role.organizationUserRole}">
+                                                <a ng-click="role.organizationUserRole = !role.organizationUserRole">
+                                                    <input ng-model="role.organizationUserRole" type="checkbox" value='1' name="role.organizationUserRole" >Organization Member Only
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group" ng-show="showBelongTo">
+                                        <label for="belongTo">Belong To</label>
+                                        <select id="belongTo" class="form-control" ng-model="role.belongTo" ng-options="role.id as role.name for role in roles">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Access</label>
+                                        <ul class="checkbox-ul">
+                                            <ul class="checkbox-ul">
+                                                <li ng-class="{'active': access[obj.id],'inactive': !access[obj.id]}" ng-repeat="obj in accessList"><a ng-click="access[obj.id] = !access[obj.id]; rolePermissionsClicked(obj.id, access[obj.id])"><input ng-model="access[obj.id]" type="checkbox" value='{{obj.id}}' name="{{obj.id}}" >{{obj.label}}</a></li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Assign</label>
+                                        <div ng-repeat="organizationUser in organizationUserRoleDTOs">
+                                            <label><input ng-model="organizationUser.assigned" type="checkbox"> {{organizationUser.firstName}} {{organizationUser.lastName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

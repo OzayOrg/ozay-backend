@@ -7,8 +7,8 @@ angular.module('ozayApp')
                 parent: 'account',
                 url: '/password',
                 data: {
-                    roles: ['ROLE_USER'],
-                    pageTitle: 'global.menu.account.password'
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Password'
                 },
                 views: {
                     'content@': {
@@ -17,10 +17,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('password');
-                        return $translate.refresh();
-                    }]
+                    
                 }
             });
     });

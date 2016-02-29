@@ -7,13 +7,16 @@ angular.module('ozayApp')
                 parent: 'admin',
                 url: '/docs',
                 data: {
-                    roles: ['ROLE_ADMIN'],
-                    pageTitle: 'global.menu.admin.apidocs'
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: 'API'
                 },
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/admin/docs/docs.html'
                     }
+                },
+                resolve: {
+                    
                 }
             });
     });

@@ -1,0 +1,72 @@
+<div class="side-body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div my-shared-scope></div>
+            <form name="form" class="form" role="form" ng-submit="form.$valid && submit(form)" novalidate>
+                <div class="main-content-wrapper">
+                    <div class="main-content-title">
+                        <div class="row">
+                            <h4 class="col-xs-12">
+                                {{pageTitle}}
+                                <span class="pull-right">
+                                    <button class="btn btn-default" ng-show="member.userId == 0" type="button" ng-click="invite(member.id);" ng-disabled="!button" class="btn button" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_POST, MEMBER_PUT">Invite</button>
+                                    <button class="btn btn-default" type="submit" ng-click="submitted=true;" ng-disabled="!button" class="btn button" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_POST, MEMBER_PUT">Save</button>
+                                    <a ui-sref="member"><button class="btn btn-default" type="button" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_GET">Back</button></a>
+                                    <button ng-show="showDeleteBtn" class="btn btn-danger" type="button" ng-click="deleteClicked();" has-any-authority="ROLE_ADMIN, ROLE_SUBSCRIBER, MEMBER_DELETE">Delete</button>
+                                </span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="side-body-inner-content">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.firstName.$invalid}">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firsName" placeholder="" ng-model="member.firstName" required>
+                                        <p ng-show="submitted && form.firsName.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.lastName.$invalid}">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" ng-model="member.lastName" required>
+                                        <p ng-show="submitted && form.lastName.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.unit.$invalid}">
+                                        <label for="unit">Unit</label>
+                                        <input type="text" name="unit" class="form-control" id="unit" placeholder="" ng-model="member.unit">
+                                        <p ng-show="submitted && form.unit.$invalid" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.email.$invalid}">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="" ng-model="member.email" ng-disabled="member.userId > 0;"required>
+                                        <p ng-show="submitted && form.email.$error.required" class="help-block has-error">Required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="side-body-inner-content">
+                                    <div class="form-group" ng-class="{ 'has-error' : submitted && form.phone.$invalid}">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="" ng-model="member.phone">
+                                        <p ng-show="submitted && form.phone.$invalid" class="help-block has-error">Required</p>
+                                    </div>
+                                    <div>
+                                        <label>Role</label>
+
+                                        <ul class="checkbox-ul">
+                                            <li ng-class="{'active': obj.assign,'inactive': !obj.assign}" ng-repeat="obj in roles">
+                                                <a ng-click="obj.assign = !obj.assign;memberRoleClicked(obj);">
+                                                    <input ng-model="obj.assign"  type="checkbox"  name="{{obj.name}}" >{{obj.name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

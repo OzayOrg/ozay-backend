@@ -17,23 +17,23 @@
             overflowToDisk="false"
             />
 
-    <cache name="com.ozay.domain.User"
+    <cache name="com.ozay.backend.domain.User"
            timeToLiveSeconds="3600">
     </cache>
 
-    <cache name="com.ozay.domain.Authority"
+    <cache name="com.ozay.backend.domain.Authority"
            timeToLiveSeconds="3600">
     </cache>
 
-    <cache name="com.ozay.domain.User.authorities"
+    <cache name="com.ozay.backend.domain.User.authorities"
            timeToLiveSeconds="3600">
     </cache>
 
-    <cache name="com.ozay.domain.PersistentToken"
+    <cache name="com.ozay.backend.domain.PersistentToken"
            timeToLiveSeconds="3600">
     </cache>
 
-    <cache name="com.ozay.domain.User.persistentTokens"
+    <cache name="com.ozay.backend.domain.User.persistentTokens"
            timeToLiveSeconds="3600">
     </cache>
 </ehcache>

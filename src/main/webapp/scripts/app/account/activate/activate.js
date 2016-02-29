@@ -4,11 +4,10 @@ angular.module('ozayApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('activate', {
-                parent: 'account',
                 url: '/activate?key',
                 data: {
-                    roles: [],
-                    pageTitle: 'activate.title'
+                    authorities: [],
+                    pageTitle: 'Activation'
                 },
                 views: {
                     'content@': {
@@ -17,11 +16,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('activate');
-                        return $translate.refresh();
-                    }]
+
                 }
             });
     });
-

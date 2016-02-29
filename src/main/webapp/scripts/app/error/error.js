@@ -7,8 +7,8 @@ angular.module('ozayApp')
                 parent: 'site',
                 url: '/error',
                 data: {
-                    roles: [],
-                    pageTitle: 'errors.title'
+                    authorities: [],
+                    pageTitle: 'Error page!'
                 },
                 views: {
                     'content@': {
@@ -16,17 +16,13 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('error');
-                        return $translate.refresh();
-                    }]
+
                 }
             })
             .state('accessdenied', {
-                parent: 'site',
                 url: '/accessdenied',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {
@@ -34,10 +30,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('error');
-                        return $translate.refresh();
-                    }]
+
                 }
             });
     });

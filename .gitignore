@@ -1,6 +1,7 @@
 ######################
 # Project Specific
 ######################
+/src/main/webapp/assets/styles/main.css
 /src/main/webapp/dist
 
 ######################
@@ -101,7 +102,6 @@ Desktop.ini
 ######################
 /build/**
 /bin/**
-/data/**
 /spring_loaded/**
 /deploy/**
 

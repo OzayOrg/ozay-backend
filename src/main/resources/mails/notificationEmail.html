@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notification</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+
+<div style="border-top: 0.25cm;border-top-color: #fec912; border-top-style: solid;"></div>
+<center>
+    <a href="http://ozay.us/#/login"><img src="http://ozay.us/assets/images/logo_email.png" width="100px" /></a>
+</center>
+
+
+<div th:utext="${body}">
+
+</div>
+</body>
+
+<!--footer-->
+
+<div style="background-color:#fec612;color:#ffffff;font-size:12px;font-family:Tahoma;
+            padding:10px;
+            display: block;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            white-space: wrap;">
+    <!--Column 1:flex grow does the magic -->
+    <span>
+        <span style="font-size:12px;">Follow us:</span>
+        <a href="https://www.facebook.com/OzayUS"><img src="http://ozay.us/assets/images/facebook.png" style="padding-left:20px;" height="15px"/></a>
+        <a href="https://twitter.com/OzayApp"><img src="http://ozay.us/assets/images/twitter.png" style="padding-left:25px;" height="15px"/></a>
+    </span>
+
+</div>
+
+<div><br /></div>
+
+
+</html>

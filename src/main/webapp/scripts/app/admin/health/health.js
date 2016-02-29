@@ -7,8 +7,8 @@ angular.module('ozayApp')
                 parent: 'admin',
                 url: '/health',
                 data: {
-                    roles: ['ROLE_ADMIN'],
-                    pageTitle: 'health.title'
+                    authorities: ['ROLE_ADMIN'],
+                    pageTitle: 'Health checks'
                 },
                 views: {
                     'content@': {
@@ -17,10 +17,7 @@ angular.module('ozayApp')
                     }
                 },
                 resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('health');
-                        return $translate.refresh();
-                    }]
+                    
                 }
             });
     });
